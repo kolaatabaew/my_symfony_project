@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Книжный магазин</title>
+</head>
+<body>
+    <h1>Книжный магазин — Аналитика</h1>
+
+    <h3>1. Список людей и количество их заказов</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr><th>Имя</th><th>Почта</th><th>Количество заказов</th></tr>
+        </thead>
+        <tbody>
+            <?php foreach ($userStats as $u): ?>
+                <tr>
+                    <td><?php echo $u['name']; ?></td>
+                    <td><?php echo $u['email']; ?></td>
+                    <td><?php echo $u['order_count']; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>2. Информация по каждому заказу</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr><th>ID Заказа</th><th>Покупатель</th><th>Книги</th><th>Сумма</th></tr>
+        </thead>
+        <tbody>
+            <?php foreach ($ordersDetails as $o): ?>
+                <tr>
+                    <td>#<?php echo $o['id']; ?></td>
+                    <td><?php echo $o['buyer']; ?></td>
+                    <td><?php echo $o['books']; ?></td>
+                    <td><?php echo $o['sum']; ?> руб.</td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>3. Топ-3 самых крупных покупателей</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr><th>Место</th><th>Имя</th><th>Потрачено всего</th></tr>
+        </thead>
+        <tbody>
+            <?php $place = 1; foreach ($top3 as $u): ?>
+                <tr>
+                    <td><?php echo $place++; ?></td>
+                    <td><?php echo $u['name']; ?></td>
+                    <td><?php echo $u['total_spent']; ?> руб.</td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <h3>4. Средняя сумма покупки</h3>
+    <p>В среднем люди покупают на сумму: <b><?php echo $averageCheck; ?> руб.</b></p>
+
+    <h3>5. Самая дорогая книга</h3>
+    <p>Название: <b><?php echo $expensiveBook['title']; ?></b></p>
+    <p>Цена: <b><?php echo $expensiveBook['price']; ?> руб.</b></p>
+    <p>Вывод: Книга стоит дорого, её стоит рекламировать.</p>
+</body>
+</html>
